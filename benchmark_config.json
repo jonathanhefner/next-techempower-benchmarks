@@ -1,0 +1,24 @@
+{
+  "framework": "nextjs",
+  "tests": [
+    {
+      "default": {
+        "display_name": "Next.js",
+        "versus": "nodejs",
+        "classification": "Platform",
+        "language": "TypeScript",
+        "platform": "nodejs",
+        "framework": "nextjs",
+        "os": "Linux",
+        "webserver": "None",
+        "database": "postgres",
+        "database_os": "Linux",
+        "orm": "Micro",
+        "approach": "Realistic",
+        "notes": "",
+        "port": 3000,
+        "json_url": "/json"
+      }
+    }
+  ]
+}
