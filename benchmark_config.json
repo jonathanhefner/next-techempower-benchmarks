@@ -17,7 +17,8 @@
         "approach": "Realistic",
         "notes": "",
         "port": 3000,
-        "json_url": "/json"
+        "json_url": "/json",
+        "db_url": "/db"
       }
     }
   ]
