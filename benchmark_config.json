@@ -19,7 +19,8 @@
         "port": 3000,
         "json_url": "/json",
         "db_url": "/db",
-        "query_url": "/queries?queries="
+        "query_url": "/queries?queries=",
+        "fortune_url": "/fortunes"
       }
     }
   ]
