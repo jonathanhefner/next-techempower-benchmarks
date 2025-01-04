@@ -18,7 +18,8 @@
         "notes": "",
         "port": 3000,
         "json_url": "/json",
-        "db_url": "/db"
+        "db_url": "/db",
+        "query_url": "/queries?queries="
       }
     }
   ]
