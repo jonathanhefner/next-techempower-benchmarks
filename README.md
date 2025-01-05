@@ -10,13 +10,16 @@ This is an implementation of the [TechEmpower Benchmarks](https://github.com/Tec
 | [Single Database Query][] | [`app/db/route.ts`][] | http://localhost:3000/db |
 | [Multiple Database Queries][] | [`app/queries/route.ts`][] | http://localhost:3000/queries?queries= |
 | [Fortunes][] | [`app/fortunes/page.tsx`][] | http://localhost:3000/fortunes |
+| [Database Updates][] | [`app/updates/route.ts`][] | http://localhost:3000/updates?queries= |
 
 [JSON Serialization]: https://github.com/TechEmpower/FrameworkBenchmarks/wiki/Project-Information-Framework-Tests-Overview#json-serialization
 [Single Database Query]: https://github.com/TechEmpower/FrameworkBenchmarks/wiki/Project-Information-Framework-Tests-Overview#single-database-query
 [Multiple Database Queries]: https://github.com/TechEmpower/FrameworkBenchmarks/wiki/Project-Information-Framework-Tests-Overview#multiple-database-queries
 [Fortunes]: https://github.com/TechEmpower/FrameworkBenchmarks/wiki/Project-Information-Framework-Tests-Overview#fortunes
+[Database Updates]: https://github.com/TechEmpower/FrameworkBenchmarks/wiki/Project-Information-Framework-Tests-Overview#database-updates
 
 [`app/json/route.ts`]: ./app/json/route.ts
 [`app/db/route.ts`]: ./app/db/route.ts
 [`app/queries/route.ts`]: ./app/queries/route.ts
 [`app/fortunes/page.tsx`]: ./app/fortunes/page.tsx
+[`app/updates/route.ts`]: ./app/updates/route.ts

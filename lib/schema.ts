@@ -1,4 +1,4 @@
-import { Generated, Selectable } from "kysely"
+import { Generated, Insertable, Selectable, Updateable } from "kysely"
 
 export interface Database {
   World: WorldTable
@@ -11,6 +11,8 @@ export interface WorldTable {
 }
 
 export type World = Selectable<WorldTable>
+export type NewWorld = Insertable<WorldTable>
+export type WorldUpdate = Updateable<WorldTable>
 
 export interface FortuneTable {
   id: Generated<number>
