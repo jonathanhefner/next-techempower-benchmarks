@@ -1,11 +1,16 @@
 import { db } from "@/lib/db"
 import { unstable_cacheLife as cacheLife } from "next/cache"
+import { PHASE_PRODUCTION_BUILD } from "next/dist/shared/lib/constants"
 
 async function getFortunes() {
   // 'use cache' is required when dynamicIO is active, but benchmark rules do
   // not allow caching for this test; therefore, immediately expire the cache.
   'use cache'
   cacheLife({ revalidate: 1e-9 })
+
+  // Prevent database queries during build phase.  (Note that dynamicIO prohibits
+  // the use of `export const dynamic = "force-dynamic"`.)
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) return []
 
   return await db.selectFrom("Fortune").selectAll().execute()
 }

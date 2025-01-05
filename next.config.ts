@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     dynamicIO: true,
   },
+  output: "standalone",
 };
 
 export default nextConfig;
