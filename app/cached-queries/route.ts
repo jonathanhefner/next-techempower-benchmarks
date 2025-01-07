@@ -4,7 +4,7 @@ import { unstable_cache } from "next/cache"
 import { NextRequest } from "next/server"
 
 const findWorld = unstable_cache(async (id: number) =>
-  await db.selectFrom("CachedWorld").where("id", "=", id).selectAll().executeTakeFirst()
+  await db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst()
 )
 
 export async function GET(request: NextRequest) {
