@@ -1,11 +1,11 @@
 import { db } from "@/lib/db"
 import { World } from "@/lib/schema"
+import { unstable_cache } from "next/cache"
 import { NextRequest } from "next/server"
 
-async function getWorld(id: number) {
-  'use cache'
-  return await db.selectFrom("CachedWorld").where("id", "=", id).selectAll().executeTakeFirst()
-}
+const findWorld = unstable_cache(async (id: number) =>
+  await db.selectFrom("CachedWorld").where("id", "=", id).selectAll().executeTakeFirst()
+)
 
 export async function GET(request: NextRequest) {
   const queriesParam = request.nextUrl.searchParams.get("queries")
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
   for (let i = 0; i < queriesCount; i += 1) {
     const id = 1 + Math.floor(Math.random() * 10000)
-    results[i] = await getWorld(id)
+    results[i] = await findWorld(id)
   }
 
   return Response.json(results)
