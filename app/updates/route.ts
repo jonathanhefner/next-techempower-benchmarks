@@ -5,15 +5,18 @@ import { NextRequest } from "next/server"
 export async function GET(request: NextRequest) {
   const queriesParam = request.nextUrl.searchParams.get("queries")
   const queriesCount = Math.min(Math.max(Number(queriesParam) || 1, 1), 500)
-  const promises = Array<Promise<World | undefined>>(queriesCount)
 
-  for (let i = 0; i < queriesCount; i += 1) {
-    const id = 1 + Math.floor(Math.random() * 10000)
-    promises[i] = db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst()
+  const ids = new Set<number>()
+  while (ids.size < queriesCount) {
+    ids.add(1 + Math.floor(Math.random() * 10000))
+  }
+
+  const promises = new Array<Promise<World | undefined>>()
+  for (const id of ids) {
+    promises.push(db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst())
   }
 
   const results = await Promise.all(promises) as World[]
-
   for (const result of results) {
     result.randomNumber = 1 + Math.floor(Math.random() * 10000)
   }
