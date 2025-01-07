@@ -1,5 +1,4 @@
-import { db } from "@/lib/db"
-import { World } from "@/lib/schema"
+import { findWorld, World } from "@/lib/db"
 import { NextRequest } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -9,7 +8,7 @@ export async function GET(request: NextRequest) {
 
   for (let i = 0; i < queriesCount; i += 1) {
     const id = 1 + Math.floor(Math.random() * 10000)
-    promises[i] = db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst()
+    promises[i] = findWorld(id)
   }
 
   return Response.json(await Promise.all(promises))

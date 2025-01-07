@@ -1,5 +1,4 @@
-import { db } from "@/lib/db"
-import { World } from "@/lib/schema"
+import { db, findWorld, upsertWorlds, World } from "@/lib/db"
 import { NextRequest } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -13,7 +12,7 @@ export async function GET(request: NextRequest) {
 
   const promises = new Array<Promise<World | undefined>>()
   for (const id of ids) {
-    promises.push(db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst())
+    promises.push(findWorld(id))
   }
 
   const results = await Promise.all(promises) as World[]
@@ -21,9 +20,7 @@ export async function GET(request: NextRequest) {
     result.randomNumber = 1 + Math.floor(Math.random() * 10000)
   }
 
-  await db.insertInto("World").values(results).onConflict(oc =>
-    oc.column("id").doUpdateSet({ randomNumber: eb => eb.ref("excluded.randomNumber") })
-  ).execute()
+  await upsertWorlds(results)
 
   return Response.json(results)
 }

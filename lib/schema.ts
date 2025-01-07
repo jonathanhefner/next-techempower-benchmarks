@@ -7,10 +7,10 @@ export interface Database {
 
 export interface WorldTable {
   id: Generated<number>
-  randomNumber: number
+  randomnumber: number
 }
 
-export type World = Selectable<WorldTable>
+export type WorldRow = Selectable<WorldTable>
 export type NewWorld = Insertable<WorldTable>
 export type WorldUpdate = Updateable<WorldTable>
 

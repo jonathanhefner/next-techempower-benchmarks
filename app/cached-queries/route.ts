@@ -1,11 +1,8 @@
-import { db } from "@/lib/db"
-import { World } from "@/lib/schema"
+import { findWorld as uncached_findWorld, World } from "@/lib/db"
 import { unstable_cache } from "next/cache"
 import { NextRequest } from "next/server"
 
-const findWorld = unstable_cache(async (id: number) =>
-  await db.selectFrom("World").where("id", "=", id).selectAll().executeTakeFirst()
-)
+const findWorld = unstable_cache(uncached_findWorld)
 
 export async function GET(request: NextRequest) {
   const queriesParam = request.nextUrl.searchParams.get("queries")
